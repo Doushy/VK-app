@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AllGroupsViewController: UIViewController {
 
@@ -13,10 +14,11 @@ class AllGroupsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let reuseIdentifierCustom = "reuseIdentifierCustom"
-    
+    let fromAllGroupsToMyGroupsSegue = "fromAllGroupsToMyGroups"
+    let session = Session.instance
     
     var allGroupsArray = [Group]()
-    let fromAllGroupsToMyGroupsSegue = "fromAllGroupsToMyGroups"
+    
     var count = Int()
     
     var selectedGroup: Group?
@@ -45,6 +47,17 @@ class AllGroupsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let parametrs: Parameters = [
+            "user_ids": session.userId,
+            "access_token": session.token,
+            "v": "5.131"
+            
+        ]
+        
+        Alamofire.request("https://api.vk.com/method/groups.getCatalog?user_ids=&fields=bdate&access_token=&v=", parameters: parametrs).responseJSON { data in
+            print(data.value)
+        }
     }
         
 

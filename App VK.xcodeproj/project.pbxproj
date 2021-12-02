@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19E36B0B2634413036DAC7F8 /* Pods_App_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C80B06F886137ABFF281A5 /* Pods_App_VK.framework */; };
 		8F1F640F271F26DF006A8202 /* GalleryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F640D271F26DF006A8202 /* GalleryCollectionCell.swift */; };
 		8F1F6410271F26DF006A8202 /* GalleryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1F640E271F26DF006A8202 /* GalleryCollectionCell.xib */; };
 		8F1F6412271F28B9006A8202 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1F6411271F28B9006A8202 /* GalleryViewController.swift */; };
@@ -39,9 +40,13 @@
 		DB60FC912743F84B0014A0FC /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB60FC902743F84B0014A0FC /* NewsViewController.swift */; };
 		DB87C4CE274D27E1003A898D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB87C4CD274D27E1003A898D /* Session.swift */; };
 		DBC970062746DD9500E0B6B8 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC970052746DD9500E0B6B8 /* CustomTableViewCell.xib */; };
+		DBF9333C27579F6C0013F0B9 /* gitignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9333B27579F6C0013F0B9 /* gitignore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0510FCD9D0F04CDBE1250ABA /* Pods-App VK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App VK.release.xcconfig"; path = "Target Support Files/Pods-App VK/Pods-App VK.release.xcconfig"; sourceTree = "<group>"; };
+		36C80B06F886137ABFF281A5 /* Pods_App_VK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_VK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		886A6CF68983B17199C70A66 /* Pods-App VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App VK.debug.xcconfig"; path = "Target Support Files/Pods-App VK/Pods-App VK.debug.xcconfig"; sourceTree = "<group>"; };
 		8F1F640D271F26DF006A8202 /* GalleryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionCell.swift; sourceTree = "<group>"; };
 		8F1F640E271F26DF006A8202 /* GalleryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionCell.xib; sourceTree = "<group>"; };
 		8F1F6411271F28B9006A8202 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		DB60FC902743F84B0014A0FC /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DB87C4CD274D27E1003A898D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		DBC970052746DD9500E0B6B8 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		DBF9333B27579F6C0013F0B9 /* gitignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitignore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +89,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E36B0B2634413036DAC7F8 /* Pods_App_VK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C0846C400D6213B96D1890F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36C80B06F886137ABFF281A5 /* Pods_App_VK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81210AE5DB5EAFBCA8191A94 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				886A6CF68983B17199C70A66 /* Pods-App VK.debug.xcconfig */,
+				0510FCD9D0F04CDBE1250ABA /* Pods-App VK.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8F1F6417271F2AA2006A8202 /* GalleryViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +167,8 @@
 			children = (
 				8F8A094B270F7CCE00A56A87 /* App VK */,
 				8F8A094A270F7CCE00A56A87 /* Products */,
+				81210AE5DB5EAFBCA8191A94 /* Pods */,
+				5C0846C400D6213B96D1890F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +195,7 @@
 				8F8A0955270F7CD200A56A87 /* Assets.xcassets */,
 				8F8A0957270F7CD200A56A87 /* LaunchScreen.storyboard */,
 				8F8A095A270F7CD200A56A87 /* Info.plist */,
+				DBF9333B27579F6C0013F0B9 /* gitignore.swift */,
 			);
 			path = "App VK";
 			sourceTree = "<group>";
@@ -200,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F8A095D270F7CD200A56A87 /* Build configuration list for PBXNativeTarget "App VK" */;
 			buildPhases = (
+				AC829E83501AB0A1B69BBED4 /* [CP] Check Pods Manifest.lock */,
 				8F8A0945270F7CCE00A56A87 /* Sources */,
 				8F8A0946270F7CCE00A56A87 /* Frameworks */,
 				8F8A0947270F7CCE00A56A87 /* Resources */,
+				9BE757CC2A07229D8F41BAB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,6 +291,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9BE757CC2A07229D8F41BAB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-App VK/Pods-App VK-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-App VK/Pods-App VK-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-App VK/Pods-App VK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC829E83501AB0A1B69BBED4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-App VK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8F8A0945270F7CCE00A56A87 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -285,6 +356,7 @@
 				8FFE38082721C7CF006F014F /* FriendsViewController+TableDataSource.swift in Sources */,
 				DB60FC912743F84B0014A0FC /* NewsViewController.swift in Sources */,
 				8F1F6414271F2A28006A8202 /* GalleryViewController+CollectioDelegate.swift in Sources */,
+				DBF9333C27579F6C0013F0B9 /* gitignore.swift in Sources */,
 				8F1F640F271F26DF006A8202 /* GalleryCollectionCell.swift in Sources */,
 				8F6C094C2718B4D700681D69 /* FriendsViewController.swift in Sources */,
 				8FFE380E2721DD77006F014F /* LikeCounterView.swift in Sources */,
@@ -435,6 +507,7 @@
 		};
 		8F8A095E270F7CD200A56A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 886A6CF68983B17199C70A66 /* Pods-App VK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -454,6 +527,7 @@
 		};
 		8F8A095F270F7CD200A56A87 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0510FCD9D0F04CDBE1250ABA /* Pods-App VK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

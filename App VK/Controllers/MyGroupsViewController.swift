@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class MyGroupsViewController: UIViewController {
 
@@ -13,7 +14,7 @@ class MyGroupsViewController: UIViewController {
     
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     let fromAllGroupsToMyGroupsSegue = "fromAllGroupsToMyGroups"
-    
+    let session = Session.instance
     var myGroupsArray = [Group]()
     
     
@@ -36,6 +37,20 @@ class MyGroupsViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierCustom)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        
+        
+        let parametrs: Parameters = [
+            "user_ids": session.userId,
+            "access_token": session.token,
+            "v": "5.131"
+            
+        ]
+        
+        Alamofire.request("https://api.vk.com/method/groups.get?user_ids=&fields=bdate&access_token=&v=", parameters: parametrs).responseJSON { data in
+            print(data.value)
+        }
     }
         
 

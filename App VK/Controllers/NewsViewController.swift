@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class NewsViewController: UIViewController {
 
     
     @IBOutlet var tableView: UITableView!
-    
+    let session = Session.instance
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     
     var newsArray = [News]()
@@ -36,7 +37,17 @@ class NewsViewController: UIViewController {
         tableView.dataSource = self
         
         
+        let parametrs: Parameters = [
+            "user_ids": session.userId,
+            "access_token": session.token,
+            "v": "5.131",
+            "filters": "post,photo,po_tag, wall_photohot"
+            
+        ]
         
+        Alamofire.request("https://api.vk.com/method/newsfeed.get?user_ids=&filters=&fields=bdate&v=", parameters: parametrs).responseJSON { data in
+            print(data.value)
+        }
         
         
         

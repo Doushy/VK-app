@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class FriendsViewController: UIViewController {
     
@@ -63,8 +64,20 @@ class FriendsViewController: UIViewController {
         
         
         let session = Session.instance
-        print("Token \(session.token) ")
-        print("User id: \(session.userId) ")
+        // print("Token \(session.token) ")
+        //print("User id: \(session.userId) ")
+        
+        
+        let parametrs: Parameters = [
+            "user_ids": session.userId,
+            "access_token": session.token,
+            "v": "5.131"
+            
+        ]
+        
+        Alamofire.request("https://api.vk.com/method/friends.get?user_ids=&fields=bdate&access_token=&v=", parameters: parametrs).responseJSON { data in
+            print(data.value)
+        }
     }
     
     
