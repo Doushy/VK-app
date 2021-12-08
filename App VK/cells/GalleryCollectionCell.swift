@@ -28,6 +28,13 @@ class GalleryCollectionCell: UICollectionViewCell {
         photoImageView.image = image
     }
     
+    func configurePhoto(image: ItemPhotes) {
+        
+        var image = try? Data(contentsOf: URL(string: image.sizes.first!.url)!)
+        photoImageView.image = UIImage(data: image!)
+
+        //likeView.delegate = self
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

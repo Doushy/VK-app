@@ -7,11 +7,11 @@
 
 import Foundation
 
-class Session {
+class VKSession {
     
     private init () {}
     
-    static let instance = Session()
+    static let instance = VKSession()
     
     var token: String = ""
     var userId: Int = 0

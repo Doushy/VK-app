@@ -9,7 +9,7 @@ import UIKit
 
 extension GalleryViewController {
     
-    func showView(image: UIImage) {
+    func showView(image: String) {
         if fullScreenView == nil {
             fullScreenView = UIView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
         }
@@ -18,8 +18,12 @@ extension GalleryViewController {
         self.view.addSubview(fullScreenView!)
 //        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap))
 //        fullScreenView?.addGestureRecognizer(tapRecognizer)
-        
-        let imageView = UIImageView(image: image)
+        var image = try? Data(contentsOf: URL(string: image)!)
+//        let imageView = UIImage(data: image!)
+        let photo = UIImage(data: image!)
+        let imageView = UIImageView()
+        imageView.image = photo
+        //let imageView = UIImageView(image: image)
         fullScreenView?.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.centerXAnchor.constraint(equalTo: fullScreenView!.centerXAnchor).isActive = true

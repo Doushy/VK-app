@@ -9,4 +9,4 @@ import Foundation
 
 
 let galleryCollectionCellNibName = "GalleryCollectionCell"
-let cellHeight = 70
+let cellHeight = 60

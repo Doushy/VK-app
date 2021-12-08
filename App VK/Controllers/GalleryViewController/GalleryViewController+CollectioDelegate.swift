@@ -10,12 +10,15 @@ import UIKit
 extension GalleryViewController: UICollectionViewDelegate {
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       showView(image: self.photos[indexPath.item])
+
+       
+        
+        showView(image: (self.friendsArray[indexPath.item].sizes.first!.url))
 
 //        backView.isHidden = false
 //        collectionView.isHidden = true
 //        //self.view.bringSubviewToFront(backView)
-        // imageView.image = self.photos[indexPath.item]
+//         imageView.image = self.photos[indexPath.item]
     }
     
     

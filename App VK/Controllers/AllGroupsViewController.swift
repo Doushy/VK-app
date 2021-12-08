@@ -15,7 +15,7 @@ class AllGroupsViewController: UIViewController {
     
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     let fromAllGroupsToMyGroupsSegue = "fromAllGroupsToMyGroups"
-    let session = Session.instance
+    let vkSession = VKSession.instance
     
     var allGroupsArray = [Group]()
     
@@ -49,8 +49,8 @@ class AllGroupsViewController: UIViewController {
         tableView.dataSource = self
         
         let parametrs: Parameters = [
-            "user_ids": session.userId,
-            "access_token": session.token,
+            "user_ids": vkSession.userId,
+            "access_token": vkSession.token,
             "v": "5.131"
             
         ]
@@ -74,7 +74,7 @@ extension AllGroupsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierCustom, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-        cell.configure(group: allGroupsArray[indexPath.row])
+        cell.configureTest(group: allGroupsArray[indexPath.row])
         cell.delegate = self
         return cell
     }

@@ -12,7 +12,7 @@ class NewsViewController: UIViewController {
 
     
     @IBOutlet var tableView: UITableView!
-    let session = Session.instance
+    let vkSession = VKSession.instance
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     
     var newsArray = [News]()
@@ -38,8 +38,8 @@ class NewsViewController: UIViewController {
         
         
         let parametrs: Parameters = [
-            "user_ids": session.userId,
-            "access_token": session.token,
+            "user_ids": vkSession.userId,
+            "access_token": vkSession.token,
             "v": "5.131",
             "filters": "post,photo,po_tag, wall_photohot"
             

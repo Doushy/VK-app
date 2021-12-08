@@ -29,8 +29,9 @@ class CustomTableViewCell: UITableViewCell {
     
     
     weak var delegate: CustomTableCellProtocol?
-    var completion: ((Friend) -> Void)?
-    var friend: Friend?
+    var completion: ((Item) -> Void)?
+    var friend: Item?
+
     
     override func prepareForReuse() {
         avatarImageView.image = nil
@@ -40,20 +41,29 @@ class CustomTableViewCell: UITableViewCell {
     }
     
   
-    func configure(friend: Friend, completion: ((Friend) -> Void)?) {
+    func configure(friend: Item, completion: ((Item) -> Void)?) {
         self.completion = completion
         self.friend = friend
-        avatarImageView.image = friend.avatar
-        titleLabel.text = friend.name
+        let image = try? Data(contentsOf: URL(string: friend.photo100)!)
+        self.avatarImageView.image = UIImage(data: image!)
+        titleLabel.text = friend.firstName + " " + friend.lastName
+        likeView.delegate = self
+    }
+
+    
+    func configure(group: ItemGroup) {
+        let image = try? Data(contentsOf: URL(string: group.photo50)!)
+        self.avatarImageView.image = UIImage(data: image!)
+        titleLabel.text = group.name
         likeView.delegate = self
     }
     
-    
-    func configure(group: Group) {
+    func configureTest(group: Group) {
         avatarImageView.image = group.avatar
         titleLabel.text = group.title
         likeView.delegate = self
     }
+    
     
     
     override func awakeFromNib() {

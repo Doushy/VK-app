@@ -11,6 +11,9 @@ import WebKit
 
 class LoginViewController: UIViewController {
 
+    
+    let vkSession = VKSession.instance
+    
     @IBOutlet weak var webView: WKWebView!
     {
         didSet {
@@ -214,9 +217,9 @@ extension LoginViewController: WKNavigationDelegate {
                             return
                         }
         
-        let session = Session.instance
-            session.token = token
-            session.userId = userId
+        
+        vkSession.token = token
+        vkSession.userId = userId
         
         //print(token)
         performSegue(withIdentifier: "toGreenSegue", sender: nil)
