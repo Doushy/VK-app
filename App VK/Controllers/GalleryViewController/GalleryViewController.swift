@@ -20,6 +20,7 @@ class GalleryViewController: UIViewController {
     var fullScreenView: UIView?
     var friendsArray = [ItemPhotes]()
  
+    let realmManager = RealmManagerPhotos()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +66,12 @@ class GalleryViewController: UIViewController {
                             print(users.response.items)
                             DispatchQueue.main.async {
                                 //print(users.response.count)
+                                users.response.items.forEach { sizes in
+                                    self?.realmManager.saveData(users: sizes.sizes)
+                                }
+//                                self?.realmManager.saveData(users: users.response.items)
                                 self?.collectionView.reloadData()
+                                
                                 
                             }
                             

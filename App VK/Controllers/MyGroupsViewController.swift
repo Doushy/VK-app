@@ -17,7 +17,7 @@ class MyGroupsViewController: UIViewController {
     let vkSession = VKSession.instance
     var myGroupsArray = [ItemGroup]()
     
-    
+    let realmManager = RealmManagerGroups()
 //    func fill() {
 //    let group1 = Group(title: "КВН", avatar: UIImage(named: "q1")!)
 //    myGroupsArray.append(group1)
@@ -67,6 +67,7 @@ class MyGroupsViewController: UIViewController {
                             DispatchQueue.main.async {
                                 //self?.formArrayLetter()
                                 self?.tableView.reloadData()
+                                self?.realmManager.saveData(users: groups.response.items)
                             }
                             
 //                                            self?.dataSource = users
@@ -76,7 +77,7 @@ class MyGroupsViewController: UIViewController {
 //                                            }
                                         } catch(let error) {
                                           
-                                            print(error)
+                                            //print(error)
                                         }
                                     }
        

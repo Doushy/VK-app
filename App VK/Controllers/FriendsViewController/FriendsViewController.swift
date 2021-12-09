@@ -22,7 +22,7 @@ class FriendsViewController: UIViewController {
     let vkSession = VKSession.instance
     var dataSource: [ServerResponse] = []
     
-    
+    let realmManager = RealmManagerFriends()
     
     
     override func viewDidLoad() {
@@ -66,6 +66,7 @@ class FriendsViewController: UIViewController {
                             DispatchQueue.main.async {
                                 self?.formArrayLetter()
                                 self?.tableView.reloadData()
+                                self?.realmManager.saveData(users: users.response.items)
                             }
                             
 //                                            self?.dataSource = users
@@ -75,7 +76,7 @@ class FriendsViewController: UIViewController {
 //                                            }
                                         } catch(let error) {
                                           
-                                            print(error)
+                                            //print(error)
                                         }
                                     }
        

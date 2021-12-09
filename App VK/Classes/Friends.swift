@@ -6,27 +6,47 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct ServerResponse: Codable {
     let response: Response
 
 }
 
-class Response: Codable {
-    let count: Int
-    let items: [Item]
+class Response: Object,  Codable {
+    @objc dynamic var count: Int = 0
+    var items: [Item] = []
 
 }
 
-class Item: Codable {
-    let firstName: String
-    let id: Int
-    let lastName: String
-    let photo100: String
+class Item: Object, Codable {
+    @objc dynamic var firstName: String = ""
+    @objc dynamic var id: Int = 0
+    @objc dynamic var lastName: String = ""
+    @objc dynamic var photo100: String = ""
 
     enum CodingKeys: String, CodingKey {
-            case firstName = "first_name"
-            case id
-            case lastName = "last_name"
+        case firstName = "first_name"
+        case id
+        case lastName = "last_name"
         case photo100 = "photo_100"}
+}
+
+
+class RealmManagerFriends {
+    
+    func saveData(users: [Item]) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            realm.add(users)
+            try realm.commitWrite()
+            print("all good")
+//            print(realm)
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 }

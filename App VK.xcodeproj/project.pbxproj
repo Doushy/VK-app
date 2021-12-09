@@ -39,7 +39,7 @@
 		DB60FC8E2743F3C60014A0FC /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB60FC8D2743F3C60014A0FC /* News.swift */; };
 		DB60FC912743F84B0014A0FC /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB60FC902743F84B0014A0FC /* NewsViewController.swift */; };
 		DB6B7763275F8A9900927497 /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6B7762275F8A9900927497 /* Groups.swift */; };
-		DB6B7765275FA0E700927497 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6B7764275FA0E700927497 /* Photo.swift */; };
+		DB6B7765275FA0E700927497 /* Photes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6B7764275FA0E700927497 /* Photes.swift */; };
 		DB87C4CE274D27E1003A898D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB87C4CD274D27E1003A898D /* Session.swift */; };
 		DBC970062746DD9500E0B6B8 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBC970052746DD9500E0B6B8 /* CustomTableViewCell.xib */; };
 		DBF9333C27579F6C0013F0B9 /* gitignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9333B27579F6C0013F0B9 /* gitignore.swift */; };
@@ -83,7 +83,7 @@
 		DB60FC8D2743F3C60014A0FC /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		DB60FC902743F84B0014A0FC /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		DB6B7762275F8A9900927497 /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
-		DB6B7764275FA0E700927497 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		DB6B7764275FA0E700927497 /* Photes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photes.swift; sourceTree = "<group>"; };
 		DB87C4CD274D27E1003A898D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		DBC970052746DD9500E0B6B8 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		DBF9333B27579F6C0013F0B9 /* gitignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitignore.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 			children = (
 				DBF9333E275922A20013F0B9 /* Friends.swift */,
 				DB6B7762275F8A9900927497 /* Groups.swift */,
-				DB6B7764275FA0E700927497 /* Photo.swift */,
+				DB6B7764275FA0E700927497 /* Photes.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 				8F6C09442718B1F200681D69 /* Group.swift in Sources */,
 				DB60FC862743C4160014A0FC /* TabBarController.swift in Sources */,
 				8F6C09422718B1E600681D69 /* Friend.swift in Sources */,
-				DB6B7765275FA0E700927497 /* Photo.swift in Sources */,
+				DB6B7765275FA0E700927497 /* Photes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
