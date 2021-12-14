@@ -18,9 +18,11 @@ class GalleryViewController: UIViewController {
     var id = Int()
     let vkSession = VKSession.instance
     var fullScreenView: UIView?
-    var friendsArray = [ItemPhotes]()
+    var friendsArray = [PhotesSize]()
+    //var datatest: [PhotesSize] = []
  
-    let realmManager = RealmManagerPhotos()
+//    let realmManager = RealmManagerPhotos()
+    let realmManager = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +30,17 @@ class GalleryViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: galleryCollectionCellNibName, bundle: nil), forCellWithReuseIdentifier: reuseIdentifierGalleryCell)
         
+        //friendsArray = realmManager.getData()
+        //print(friendsArray)
+        //collectionView.reloadData()
+                makeFriendsRequest()
         
         
         
         
         
         
-        
+        func makeFriendsRequest() {
         let userID = vkSession.userId
         
         let configuration = URLSessionConfiguration.default
@@ -63,11 +69,15 @@ class GalleryViewController: UIViewController {
                             
                             
                             self?.friendsArray = users.response.items
-                            print(users.response.items)
+//                            print(users.response.items)
+                            print(urlConstructor)
                             DispatchQueue.main.async {
                                 //print(users.response.count)
+                                
                                 users.response.items.forEach { sizes in
-                                    self?.realmManager.saveData(users: sizes.sizes)
+                                    self?.realmManager.saveData(data: sizes.sizes)
+                                    print(sizes.sizes)
+                                    //self?.datatest = [sizes]
                                 }
 //                                self?.realmManager.saveData(users: users.response.items)
                                 self?.collectionView.reloadData()
@@ -85,7 +95,7 @@ class GalleryViewController: UIViewController {
                                     task.resume()
         
 
-        
+        }
     }
     
     @IBAction func pressCloseButton(_ sender: UIButton) {

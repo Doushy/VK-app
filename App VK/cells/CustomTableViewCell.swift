@@ -29,8 +29,8 @@ class CustomTableViewCell: UITableViewCell {
     
     
     weak var delegate: CustomTableCellProtocol?
-    var completion: ((Item) -> Void)?
-    var friend: Item?
+    var completion: ((FriendInfo) -> Void)?
+    var friend: FriendInfo?
 
     
     override func prepareForReuse() {
@@ -41,7 +41,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
   
-    func configure(friend: Item, completion: ((Item) -> Void)?) {
+    func configure(friend: FriendInfo, completion: ((FriendInfo) -> Void)?) {
         self.completion = completion
         self.friend = friend
         let image = try? Data(contentsOf: URL(string: friend.photo100)!)
@@ -51,7 +51,7 @@ class CustomTableViewCell: UITableViewCell {
     }
 
     
-    func configure(group: ItemGroup) {
+    func configure(group: GroupsInfo) {
         let image = try? Data(contentsOf: URL(string: group.photo50)!)
         self.avatarImageView.image = UIImage(data: image!)
         titleLabel.text = group.name

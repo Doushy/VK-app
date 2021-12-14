@@ -8,18 +8,18 @@
 import Foundation
 import RealmSwift
 
-struct GroupsResponseGroup: Codable {
-    let response: ResponseGroup
+struct Groups: Codable {
+    let response: GroupResponse
 
 }
 
-class ResponseGroup: Object, Codable {
+class GroupResponse: Object, Codable {
     @objc dynamic var count: Int = 0
-    var items: [ItemGroup] = []
+    var items: [GroupsInfo] = []
 
 }
 
-class ItemGroup: Object, Codable {
+class GroupsInfo: Object, Codable {
     @objc dynamic var  name: String = ""
     @objc dynamic var  id: Int = 0
     @objc dynamic var  photo50: String = ""
@@ -30,22 +30,22 @@ class ItemGroup: Object, Codable {
         case photo50 = "photo_50"}
 }
 
-class RealmManagerGroups {
+//class RealmManagerGroups {
+//    
+//    func saveData(users: [GroupsInfo]) {
+//        do {
+//            let realm = try Realm()
+//            realm.beginWrite()
+//            realm.add(users)
+//            try realm.commitWrite()
+//            
+//            print("_____________")
+//            print("all good")
+//            print("_____________")
+//        }
+//        catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
-    func saveData(users: [ItemGroup]) {
-        do {
-            let realm = try Realm()
-            realm.beginWrite()
-            realm.add(users)
-            try realm.commitWrite()
-            
-            print("_____________")
-            print("all good")
-            print("_____________")
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-}
+//}

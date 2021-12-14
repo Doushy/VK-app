@@ -16,17 +16,18 @@ class FriendsViewController: UIViewController {
     
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     let fromFriendsToGallerySegue = "fromFriendsToGallery"
-    var friendsArray = [Item]()
-    var savedFriendsArray = [Item]()
+    var friendsArray = [FriendInfo]()
+    var savedFriendsArray = [FriendInfo]()
     var arrayLetter = [String]()
     let vkSession = VKSession.instance
-    var dataSource: [ServerResponse] = []
+    var dataSource: [Friends] = []
     
-    let realmManager = RealmManagerFriends()
-    
+    //let realmManager = RealmManagerFriends()
+    let realmManager = RealmManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        friendsArray = realmManager.getData()
         //fillFriendsArray()
         formArrayLetter()
         savedFriendsArray = friendsArray
@@ -36,58 +37,67 @@ class FriendsViewController: UIViewController {
         configureTableView()
         
         
+        
+        tableView.reloadData()
+        
+        makeFriendsRequest()
+        
+        
 
-        let userID = vkSession.userId
-        
-        let configuration = URLSessionConfiguration.default
-        let session =  URLSession(configuration: configuration)
         
         
-        var urlConstructor = URLComponents()
-        
-        urlConstructor.scheme = "https"
-        urlConstructor.host = "api.vk.com"
-        urlConstructor.path = "/method/friends.get"
-        urlConstructor.queryItems = [
-            URLQueryItem(name: "v", value: "5.126"),
-            URLQueryItem(name: "access_token", value: vkSession.token),
-            URLQueryItem(name: "fields", value: "photo_100")
-        ]
-         //print(urlConstructor)
-        
-        let task = session.dataTask(with: urlConstructor.url!) { [weak self] data, response, error in
-            guard let data = data else { return }
-                        do {
-                            let users = try JSONDecoder().decode(ServerResponse.self, from: data)
-                            
-                            print(users.response.count)
-                            self?.friendsArray = users.response.items
-                            self?.savedFriendsArray = users.response.items
-                            DispatchQueue.main.async {
-                                self?.formArrayLetter()
-                                self?.tableView.reloadData()
-                                self?.realmManager.saveData(users: users.response.items)
-                            }
-                            
-//                                            self?.dataSource = users
-//                                            DispatchQueue.main.async {
-//                                                self?.tableView.reloadData()
-                            //print(users.response.count)
-//                                            }
-                                        } catch(let error) {
-                                          
-                                            //print(error)
-                                        }
-                                    }
-       
-                                    task.resume()
-  
+        func makeFriendsRequest() {
+            let userID = vkSession.userId
+            
+            let configuration = URLSessionConfiguration.default
+            let session =  URLSession(configuration: configuration)
+            
+            var urlConstructor = URLComponents()
+            
+            urlConstructor.scheme = "https"
+            urlConstructor.host = "api.vk.com"
+            urlConstructor.path = "/method/friends.get"
+            urlConstructor.queryItems = [
+                URLQueryItem(name: "v", value: "5.126"),
+                URLQueryItem(name: "access_token", value: vkSession.token),
+                URLQueryItem(name: "fields", value: "photo_100")
+            ]
+            //print(urlConstructor)
+            
+            let task = session.dataTask(with: urlConstructor.url!) { [weak self] data, response, error in
+                guard let data = data else { return }
+                do {
+                    let users = try JSONDecoder().decode(Friends.self, from: data)
+                    
+                    print(users.response.count)
+                    self?.friendsArray = users.response.items
+                    self?.savedFriendsArray = users.response.items
+                    DispatchQueue.main.async {
+                        self?.formArrayLetter()
+                        self?.tableView.reloadData()
+                        self?.realmManager.saveData(data: users.response.items)
+                        //print("TEST:\(users.response.items.map { $0})")
+                    }
+                    
+                    //                                            self?.dataSource = users
+                    //                                            DispatchQueue.main.async {
+                    //                                                self?.tableView.reloadData()
+                    //print(users.response.count)
+                    //                                            }
+                } catch(let error) {
+                    
+                    //print(error)
+                }
+            }
+            
+            task.resume()
+            
+        }
     }
     
     
     
-    
-    func arrayLetter(sourceArray: [Item]) -> [String] {
+    func arrayLetter(sourceArray: [FriendInfo]) -> [String] {
         var resultArray = [String]()
         for item in sourceArray {
             let nameLetter = String(item.firstName.prefix(1))
@@ -108,8 +118,8 @@ class FriendsViewController: UIViewController {
     
     
     
-    func arrayByLetter(sourceArray: [Item], letter: String) -> [Item] {
-        var resultArray = [Item]()
+    func arrayByLetter(sourceArray: [FriendInfo], letter: String) -> [FriendInfo] {
+        var resultArray = [FriendInfo]()
         for item in sourceArray {
             let nameLetter = String(item.firstName.prefix(1)).lowercased()
             if nameLetter == letter.lowercased() {
@@ -123,7 +133,7 @@ class FriendsViewController: UIViewController {
         if segue.identifier == fromFriendsToGallerySegue,
            //           let sourceVC = segue.source as? FriendsViewController,
            let destinationVC = segue.destination as? GalleryViewController,
-           let friend = sender as? Item {
+           let friend = sender as? FriendInfo {
             destinationVC.id = friend.id
             //destinationVC.photo100 = friend.photo100
         }

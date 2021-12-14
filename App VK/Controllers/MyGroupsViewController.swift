@@ -15,9 +15,10 @@ class MyGroupsViewController: UIViewController {
     let reuseIdentifierCustom = "reuseIdentifierCustom"
     let fromAllGroupsToMyGroupsSegue = "fromAllGroupsToMyGroups"
     let vkSession = VKSession.instance
-    var myGroupsArray = [ItemGroup]()
+    var myGroupsArray = [GroupsInfo]()
     
-    let realmManager = RealmManagerGroups()
+    //let realmManager = RealmManagerGroups()
+    let realmManager = RealmManager()
 //    func fill() {
 //    let group1 = Group(title: "КВН", avatar: UIImage(named: "q1")!)
 //    myGroupsArray.append(group1)
@@ -37,8 +38,11 @@ class MyGroupsViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierCustom)
         tableView.delegate = self
         tableView.dataSource = self
+        myGroupsArray = realmManager.getData()
+        tableView.reloadData()
+//        makeFriendsRequest()
         
-        
+        func makeFriendsRequest() {
         let userID = vkSession.userId
         
         let configuration = URLSessionConfiguration.default
@@ -60,14 +64,14 @@ class MyGroupsViewController: UIViewController {
         let task = session.dataTask(with: urlConstructor.url!) { [weak self] data, response, error in
             guard let data = data else { return }
                         do {
-                            let groups = try JSONDecoder().decode(GroupsResponseGroup.self, from: data)
+                            let groups = try JSONDecoder().decode(Groups.self, from: data)
                             
                             print(groups.response.count)
                             self?.myGroupsArray = groups.response.items
                             DispatchQueue.main.async {
                                 //self?.formArrayLetter()
                                 self?.tableView.reloadData()
-                                self?.realmManager.saveData(users: groups.response.items)
+                                self?.realmManager.saveData(data: groups.response.items)
                             }
                             
 //                                            self?.dataSource = users
@@ -82,6 +86,7 @@ class MyGroupsViewController: UIViewController {
                                     }
        
                                     task.resume()
+    }
     }
         
 

@@ -15,18 +15,18 @@ struct Photes: Codable {
 
 class ResponsePhotes: Object, Codable {
     @objc dynamic var count: Int = 0
-    var items: [ItemPhotes] = []
+    var items: [PhotesSize] = []
 }
 
 
-class ItemPhotes: Object, Codable {
+class PhotesSize: Object, Codable {
     @objc dynamic var id: Int = 0
-    var sizes: [Size] = []
+    var sizes: [PhotesItems] = []
 
 }
 
 
-class Size: Object, Codable {
+class PhotesItems: Object, Codable {
     //let height: Int
     @objc dynamic var url: String = ""
     //let type: String
@@ -37,8 +37,9 @@ class Size: Object, Codable {
 
 class RealmManagerPhotos {
     
-    func saveData(users: [Size]) {
+    func saveData(users: [PhotesItems]) {
         do {
+//            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
             let realm = try Realm()
             realm.beginWrite()
             realm.add(users)

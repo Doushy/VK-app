@@ -28,7 +28,7 @@ class GalleryCollectionCell: UICollectionViewCell {
         photoImageView.image = image
     }
     
-    func configurePhoto(image: ItemPhotes) {
+    func configurePhoto(image: PhotesSize) {
         
         var image = try? Data(contentsOf: URL(string: image.sizes.first!.url)!)
         photoImageView.image = UIImage(data: image!)

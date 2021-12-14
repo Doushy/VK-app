@@ -32,6 +32,7 @@
 		8FFE380A2721C7FF006F014F /* FriendsViewController+FillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE38092721C7FF006F014F /* FriendsViewController+FillData.swift */; };
 		8FFE380E2721DD77006F014F /* LikeCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFE380D2721DD77006F014F /* LikeCounterView.swift */; };
 		8FFE38102721DD91006F014F /* LikeCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FFE380F2721DD91006F014F /* LikeCounterView.xib */; };
+		DB1D6D8E2768A4CD00BFFC57 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1D6D8D2768A4CD00BFFC57 /* RealmManager.swift */; };
 		DB488CF3273E9ACF002538C9 /* GalleryViewController+FullScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB488CF2273E9ACF002538C9 /* GalleryViewController+FullScreenView.swift */; };
 		DB60FC862743C4160014A0FC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB60FC852743C4160014A0FC /* TabBarController.swift */; };
 		DB60FC882743EFEC0014A0FC /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB60FC872743EFEC0014A0FC /* NewsTableViewCell.swift */; };
@@ -76,6 +77,7 @@
 		8FFE38092721C7FF006F014F /* FriendsViewController+FillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FriendsViewController+FillData.swift"; sourceTree = "<group>"; };
 		8FFE380D2721DD77006F014F /* LikeCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCounterView.swift; sourceTree = "<group>"; };
 		8FFE380F2721DD91006F014F /* LikeCounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeCounterView.xib; sourceTree = "<group>"; };
+		DB1D6D8D2768A4CD00BFFC57 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		DB488CF2273E9ACF002538C9 /* GalleryViewController+FullScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryViewController+FullScreenView.swift"; sourceTree = "<group>"; };
 		DB60FC852743C4160014A0FC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DB60FC872743EFEC0014A0FC /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				DBF9333E275922A20013F0B9 /* Friends.swift */,
 				DB6B7762275F8A9900927497 /* Groups.swift */,
 				DB6B7764275FA0E700927497 /* Photes.swift */,
+				DB1D6D8D2768A4CD00BFFC57 /* RealmManager.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				8F1F6419271F2C7B006A8202 /* GalleryViewController+FlowLayout.swift in Sources */,
 				8F6C09442718B1F200681D69 /* Group.swift in Sources */,
 				DB60FC862743C4160014A0FC /* TabBarController.swift in Sources */,
+				DB1D6D8E2768A4CD00BFFC57 /* RealmManager.swift in Sources */,
 				8F6C09422718B1E600681D69 /* Friend.swift in Sources */,
 				DB6B7765275FA0E700927497 /* Photes.swift in Sources */,
 			);
