@@ -75,7 +75,13 @@
                             <constraint firstItem="ELk-bb-tdt" firstAttribute="bottom" secondItem="xwZ-O4-Ltf" secondAttribute="bottom" id="x1R-sw-nHn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My friends" id="s9h-Ke-7jh"/>
+                    <navigationItem key="navigationItem" title="My friends" id="s9h-Ke-7jh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="w2x-x8-weq">
+                            <connections>
+                                <action selector="addFirend:" destination="P9K-HN-JJc" id="VLx-TT-gqW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="fGf-ia-qtj" id="0mX-sB-va8"/>
                         <outlet property="tableView" destination="xwZ-O4-Ltf" id="ewM-wd-mDT"/>
@@ -142,6 +148,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My groups" id="zo7-nA-muc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="xAn-um-RO8">
+                            <connections>
+                                <action selector="addFirend:" destination="68V-9H-vMg" id="qbG-1g-rCj"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="FgR-bc-Coa">
                             <color key="tintColor" systemColor="labelColor"/>
                             <connections>

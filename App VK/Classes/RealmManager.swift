@@ -13,11 +13,12 @@ import Realm
 class RealmManager {
     
     func saveData<T: Object>(data: [T]) {
+        
         do {
             let realm = try Realm()
             realm.beginWrite()
-            realm.add(data)
-            //                realm.add(data, update: .all)
+            //realm.add(data)
+            realm.add(data, update: .all)
             try realm.commitWrite()
             print("Save successful")
             print(realm.configuration.fileURL)
@@ -32,4 +33,6 @@ class RealmManager {
         //        print(listFriends)
         return Array(listFriends)
     }
+    
+    
 }

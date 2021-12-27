@@ -7,45 +7,45 @@
 
 import Foundation
 import RealmSwift
+import Realm
 
-struct Groups: Codable {
-    let response: GroupResponse
+@objcMembers
+class Groups: Object, Codable {
+    dynamic var response: GroupResponse? = nil
 
 }
 
+@objcMembers
 class GroupResponse: Object, Codable {
-    @objc dynamic var count: Int = 0
-    var items: [GroupsInfo] = []
+    dynamic var count: Int = 0
+    dynamic var items = List<GroupsInfo>()
 
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        count = try container.decode(Int.self, forKey: .count)
+        let itemsList = try container.decode([GroupsInfo].self, forKey: .items)
+        items.append(objectsIn: itemsList)
+        super.init()
+    }
+    
+    required override init() {
+        super.init()
+    }
 }
-
+@objcMembers
 class GroupsInfo: Object, Codable {
-    @objc dynamic var  name: String = ""
-    @objc dynamic var  id: Int = 0
-    @objc dynamic var  photo50: String = ""
+    dynamic var  name: String = ""
+    dynamic var  id: Int = 0
+    dynamic var  photo50: String = ""
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case id
-        case photo50 = "photo_50"}
+        case photo50 = "photo_50"
+    }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
-//class RealmManagerGroups {
-//    
-//    func saveData(users: [GroupsInfo]) {
-//        do {
-//            let realm = try Realm()
-//            realm.beginWrite()
-//            realm.add(users)
-//            try realm.commitWrite()
-//            
-//            print("_____________")
-//            print("all good")
-//            print("_____________")
-//        }
-//        catch {
-//            print(error.localizedDescription)
-//        }
-//    }
-    
-//}

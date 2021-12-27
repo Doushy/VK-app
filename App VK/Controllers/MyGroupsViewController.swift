@@ -7,9 +7,11 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
+
 
 class MyGroupsViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let reuseIdentifierCustom = "reuseIdentifierCustom"
@@ -17,14 +19,12 @@ class MyGroupsViewController: UIViewController {
     let vkSession = VKSession.instance
     var myGroupsArray = [GroupsInfo]()
     
-    //let realmManager = RealmManagerGroups()
     let realmManager = RealmManager()
-//    func fill() {
-//    let group1 = Group(title: "КВН", avatar: UIImage(named: "q1")!)
-//    myGroupsArray.append(group1)
-//    }
     
-  
+    var token: NotificationToken?
+    var dataSource: Results<GroupsInfo>?
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,17 +32,48 @@ class MyGroupsViewController: UIViewController {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fill()
+        mathcRealm()
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierCustom)
         tableView.delegate = self
         tableView.dataSource = self
-        myGroupsArray = realmManager.getData()
-        tableView.reloadData()
-//        makeFriendsRequest()
         
-        func makeFriendsRequest() {
+        //myGroupsArray = realmManager.getData()
+        //tableView.reloadData()
+    }
+    
+    @IBAction func addFirend(_ sender: Any) {
+        makeFriendsRequest()
+    }
+    
+    func mathcRealm() {
+        let realm = try! Realm()
+        dataSource = realm.objects(GroupsInfo.self)
+        //print("TEST \(dataSource?.count)")
+        token = dataSource?.observe { [weak self] changes in
+            switch changes {
+            case let .update(results, deletions, insertions, modifications):
+                self?.tableView.beginUpdates()
+                self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .fade)
+                self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .fade)
+                self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .fade)
+                self?.tableView.endUpdates()
+                print("UPDATED")
+                
+                print(self?.dataSource?.count)
+            case .initial:
+                self?.tableView.reloadData()
+                print("INTITAL")
+            case .error(let error):
+                print("Error")
+                
+            }
+        }
+    }
+    
+    func makeFriendsRequest() {
         let userID = vkSession.userId
         
         let configuration = URLSessionConfiguration.default
@@ -59,75 +90,40 @@ class MyGroupsViewController: UIViewController {
             URLQueryItem(name: "access_token", value: vkSession.token),
             URLQueryItem(name: "extended", value: "1")
         ]
-         //print(urlConstructor)
+        //print(urlConstructor)
         
         let task = session.dataTask(with: urlConstructor.url!) { [weak self] data, response, error in
             guard let data = data else { return }
-                        do {
-                            let groups = try JSONDecoder().decode(Groups.self, from: data)
-                            
-                            print(groups.response.count)
-                            self?.myGroupsArray = groups.response.items
-                            DispatchQueue.main.async {
-                                //self?.formArrayLetter()
-                                self?.tableView.reloadData()
-                                self?.realmManager.saveData(data: groups.response.items)
-                            }
-                            
-//                                            self?.dataSource = users
-//                                            DispatchQueue.main.async {
-//                                                self?.tableView.reloadData()
-                            //print(users.response.count)
-//                                            }
-                                        } catch(let error) {
-                                          
-                                            //print(error)
-                                        }
-                                    }
-       
-                                    task.resume()
+            do {
+                let users = try JSONDecoder().decode(Groups.self, from: data)
+                let groups = users.response?.items
+                
+                
+                
+                DispatchQueue.main.async {
+                    //self?.dataSource = Array(groups!)
+                    //self?.tableView.reloadData()
+                    self?.realmManager.saveData(data: Array(groups!))
+                    print("TEST: Ready")
+                }
+                
+            } catch(let error) {
+            }
+        }
+        task.resume()
     }
-    }
-        
-
-//    func isItemAlreadyInArray(group: Group) -> Bool {
-//        return myGroupsArray.contains { sourceGroup in
-//            sourceGroup.title == group.title
-//        }
-//    }
-//
-//
-//
-//
-//
-//    @IBAction func unwindSegueToMyGroup(segue: UIStoryboardSegue) {
-//        if segue.identifier == fromAllGroupsToMyGroupsSegue,
-//           let sourceVC = segue.source as? AllGroupsViewController,
-//           let selectedGroup = sourceVC.selectedGroup as? Group
-//        {
-//            if isItemAlreadyInArray(group: selectedGroup) {return}
-//            self.myGroupsArray.append(selectedGroup)
-//            tableView.reloadData()
-//        }
-//    }
-//
-    
-    
-    
-    
-    
 }
 
 
 extension MyGroupsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myGroupsArray.count
+        return dataSource?.count ?? 0
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierCustom, for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-        cell.configure(group: myGroupsArray[indexPath.row])
+        cell.configure(group: dataSource![indexPath.row])
         return cell
     }
     
